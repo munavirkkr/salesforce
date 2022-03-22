@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Todo List">
+        <lightning-button-icon
+            slot="actions"
+            icon-name="utility:sync"
+            alternative-text="sync"
+            title="sync"
+            onclick={refresh}></lightning-button-icon>
+            <lightning-layout>
+
+                <template if:true={processing}>
+                    <lightning-spinner size="small" alternative-text="Spinner"></lightning-spinner>
+                </template>
+<lightning-layout-item padding="around-small" size=12>
+            <ul class="slds-has-dividers_around-space">
+                <template for:each={todotask} for:item="tas">
+                <li class="slds-item" key={tas.id}>
+                    <lightning-layout vertical-align="center" horizontal-align="spread">
+                    <lightning-layout-item padding="horizontal-small" size> 
+                    {tas.Subject}
+                </lightning-layout-item>
+            <lightning-layout-item padding="horizontal-small"> 
+                    <lightning-button-icon
+                  
+                    icon-name="utility:delete"
+                    alternative-text="Delete"
+                    title="Delete"
+                    name={tas.id}
+                    onclick={DeleteTask}></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+        </li>
+        </template>
+        
+            </ul>
+        </lightning-layout-item>
+    </lightning-layout>
+        
+        <P slot="footer"> 
+            <lightning-layout pull-to-boundary="small">
+                <lightning-layout-item flexibility="auto" padding="horizontal-small">
+            <lightning-input type="text" value={newtask} placeholder="enter the text here" label="text" variant="label-hidden" onchange={updatetask} autocomplete="none"></lightning-input>
+        </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+        
+            <lightning-button variant="brand" label="Add" onclick={update}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        </P>
+    </lightning-card>
+</template>
